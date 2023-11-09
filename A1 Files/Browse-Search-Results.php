@@ -8,6 +8,13 @@ require_once "../includes/helperfiles.php";
 <link rel="stylesheet" href="../styling_files/style.css">
     </head>
 
+    function getSortIcon($field){
+        global $sort_field, $sort_order;
+        if ($sort_field == $field) {
+            return
+        }
+    }
+
     <body>
     
     <header>
