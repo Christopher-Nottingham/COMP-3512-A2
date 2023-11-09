@@ -1,4 +1,4 @@
-cosnt generesData=`  [{
+const generesData=`  [{
 		"id": 101,
 		"name": "afroswing"
 	},
