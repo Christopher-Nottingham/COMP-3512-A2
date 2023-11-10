@@ -11,3 +11,9 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
    Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
    use built-in Live Preview.
 */
+
+
+const songs = JSON.parse(songsArray);
+for (let i = 0; i<songs.length; i++){
+   console.log(songs[i]);
+}
