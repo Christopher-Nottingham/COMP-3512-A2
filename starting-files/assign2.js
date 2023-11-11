@@ -32,7 +32,6 @@ let data_serialized = JSON.stringify(data);
 const songs = JSON.parse(songsArray);
 const artist = JSON.parse(artistData);
 const generes = JSON.parse(generesData);
-const sampleSong = JSON.parse(artistData);
 
 const tempArray = [];
 function empty(){
@@ -96,6 +95,54 @@ function searchGenre(){
 
 
 getSearchedData("11a");
+
+
+
+// Array to store the matched song IDs
+const favoritesArray = [];
+
+// Function to get the song ID by its title
+function getSongIdByTitle(title) {
+    const foundSong = songs.find(song => song.title === title);
+    return foundSong ? foundSong.song_id : null;
+}
+
+// Function to handle button click and add song ID to the favorites array
+function handleAddButtonClick() {
+    // Read the song title from an input field (replace 'yourInputId' with the actual input field ID)
+    const songTitleInput = document.getElementById('yourInputId');
+    const songTitle = songTitleInput.value.trim();
+
+    if (songTitle) {
+        // Get the song ID using the title
+        const songId = getSongIdByTitle(songTitle);
+
+        if (songId) {
+            // Add the song ID to the favorites array
+            favoritesArray.push(songId);
+
+            // Log the updated favorites array
+            console.log('Favorites Array:', favoritesArray);
+
+            // Optionally, you can update the UI or perform other actions here
+        } else {
+            // Handle the case where the song title is not found
+            console.log(`No song found with title: ${songTitle}`);
+        }
+    } else {
+        // Handle the case where the input field is empty
+        console.log('Please enter a song title.');
+    }
+}
+
+// Attach the function to the "Add" button click event (replace 'yourButtonId' with the actual button ID)
+const addButton = document.getElementById('yourButtonId');
+addButton.addEventListener('click', handleAddButtonClick);
+
+
+
+
+
 
 // const searchButton = document.querySelectorAll("asisde");
 // console.log(searchButton);
