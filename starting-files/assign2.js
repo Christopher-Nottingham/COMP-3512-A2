@@ -139,6 +139,11 @@ function handleAddButtonClick() {
 const addButton = document.getElementById('yourButtonId');
 addButton.addEventListener('click', handleAddButtonClick);
 
+// Snackbar
+
+function showSnackbar() {
+   var snackbar = document.getElementById("snackbar");
+   snackbar
 
 
 

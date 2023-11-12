@@ -1,68 +1,105 @@
-.wrapper {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    /* background-color: #2196F3; */
-    padding: 10px;
-  }
-  .item {
-    background-color: rgba(255, 255, 255, 0.8);
-    /* border: 1px solid rgba(0, 0, 0, 0.8); */
-     padding: 20px; 
-    font-size: 30px;
-    text-align: center;
-  }
-
-  #altText{
-    color:black;
-}
-  #text {
-color: white;
-  }
-
-  li{
-    list-style-type: none;
-  }
-
-  .section {
-    margin: 10px;
-    background-color: #aaa;
-    padding: 30px;
-   
-  }
-
-/* Code below is from: https://codepen.io/alowenthal/pen/rxboRv?editors=1001 */
-
 body {
-    
-    background: #181818;
-    font-family: 'Roboto', sans-serif;
-  }
-  body a {
-    color: #aaa;
-  }
-  body a:hover {
-    color: #c8c8c8;
-  }
-  .header {
-    margin: 10px;
-    background: #282828;
-    padding: 10px;
-    color: white;
-    border-bottom: 1px solid #181818;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
+  background: #f4f4f4; /* A light gray background for contrast */
+  font-family: 'Roboto', sans-serif;
+}
+
+.header {
+  background: #1b2b3c; /* Bootstrap primary color */
+  color: white;
+}
+
+/* Style for navigation buttons - using Bootstrap button classes */
+#playlist-credits button {
+  background: #28a745; /* Bootstrap success color */
+  border: none;
+  color: white;
+  padding: .375rem .75rem;
+  margin-right: .5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+#playlist-credits button:hover {
+  background: #218838; /* A darker shade for hover state */
+}
+
+/* Sidebar search filters - using Bootstrap form and button classes */
+#search-aside {
+  background-color: #ffffff; /* White background for sidebar */
+  padding: 1rem;
+  border-right: 1px solid #dc3c3c; /* Separator line */
+}
 
 
-  .footer {
-    margin: 10px;
-    background: #282828;
-    padding: 10px;
-    color: white;
-    border-bottom: 1px solid #181818;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
-  
+
+#search-form .search-field {
+  margin-bottom: .5rem;
+}
+
+#search-form button {
+  background: #ffc107; /* Bootstrap warning color for buttons */
+  color: #212529; /* Bootstrap default color for text */
+}
+
+#search-form button:hover {
+  background: #e0a800; /* A darker shade for hover state */
+}
+
+/* Main content table styles */
+#main-content {
+  padding: 1rem;
+}
+
+#songs-table th,
+#songs-table td {
+  border-bottom: 1px solid #dee2e6; /* Bootstrap table row separator color */
+}
+
+.footer {
+  background: #17a2b8; /* Bootstrap info color */
+  color: white;
+}
+
+/* Snackbar styles */
+.snackbar {
+  visibility: hidden; /* Hidden by default */
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+.snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
