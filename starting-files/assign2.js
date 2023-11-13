@@ -8,17 +8,16 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
 
 
 
-const data = fetch(api).then(res => res.json());
-console.log(data);
-for (let i = 0; i<data.length; i++){
-// console.log(data[i].id);
-}
+// const data = fetch(api).then(res => res.json());
+// console.log(data);
+// for (let i = 0; i<data.length; i++){
+// // console.log(data[i].id);
+// }
 
-//FINSIH local storage
-let data_serialized = JSON.stringify(data);
 
-// console.log(foo);
-// fetch(api);
+// let data_serialized = JSON.stringify(data);
+
+
  
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
@@ -33,68 +32,157 @@ const songs = JSON.parse(songsArray);
 const artist = JSON.parse(artistData);
 const generes = JSON.parse(generesData);
 
-const tempArray = [];
-function empty(){
-   if (tempArray.length > 0){
-   tempArray.splice(tempArray.length);
-}
-}
-function getSearchedData(id){
-   empty();
-   let id_searched = id.substring(id.length-1, id.length);
-   console.log(id_searched);
-   let idNonAppended = id.substring(0, id.length-1);
-   console.log(idNonAppended);
-   if (id_searched == "g"){ 
-      for (let i = 0; i<songs.length; i++){
-         if (songs[i].genre.id == idNonAppended){ 
-         tempArray.push(songs[i]);
-      }
-   }
-   } else if (id_searched == "t"){
-      for (let i = 0; i<songs.length; i++){
-      if (songs[i].song_id == idNonAppended){
-         tempArray.push(songs[i]);
-      }
-   }
-} 
-   else if (id_searched == "a"){
-      for (let i = 0; i<songs.length; i++){
-      if (songs[i].artist.id == idNonAppended){ 
-         tempArray.push([songs[i].artist]);
-      }
-   }
- } else {
-      console.error("There are no songs with that id");
-   }
-}
 // console.log(tempArray);
-function searchByTitle() {
-   let string = "";
-   for (let i = 0; i < songs.length; i++) {
-         string = string + "<option value=" + songs[i].song_id + "t>" + songs[i].title + "</option>";
-   }
-   return string;
+function searchTitle(title) {
+const rtnStmt = songs.filter(item => item.genre.id === title );
+return rtnStmt;
 }
-function searchByArtist() {
-   let string = "";
-   for (let i = 0; i < songs.length; i++) {   
-         string = string + "<option value=" + songs[i].artist.id + "a>" + songs[i].name + "</option>";
-   }
-   return string;
+console.log(searchTitle(110));
+
+function addArtist() {
+   let empty = document.createElement("option");
+   empty.value = "";
+   empty.textContent = "Select a Artist";
+   document.querySelector("#artistSearch").appendChild(empty);
+ 
+         for(let i = 0; i<artist.length; i++){
+            let option = document.createElement("option");
+            option.textContent = artist[i].name;
+            option.value = artist[i].id;
+            document.querySelector("#artistSearch").appendChild(option);
+         }
 }
-function searchGenre(){
-   let string = "";
-   for (let i = 0; i < songs.length; i++) {   
-         string = string + "<option value=" + songs[i].genre.id + "g>" + songs[i].genre.name + "</option>";
-   }
-   return string;
+addArtist();
+function addGenre(){
+   
+   let empty = document.createElement("option");
+   empty.value = "";
+   empty.textContent = "Select a Genere";
+   document.querySelector("#genreSearch").appendChild(empty);
+         for(let i = 0; i<generes.length; i++){
+            let option = document.createElement("option");
+            option.textContent = generes[i].name;
+            option.value = generes[i].id;
+            document.querySelector("#genreSearch").appendChild(option);
+         }
+  
+}
+addGenre();
+
+function getNodes(){
+   const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
+
+   const genereSearchFilter = document.querySelector("#genreSearch");
+   const titleSearchFilter = document.querySelector("#titleSearch");
+   const artistSearchFilter = document.querySelector("#artistSearch");
+   //const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
+   
+   for(let i = 0; i<radioButtons.length; i++){
+      if (radioButtons[i].disabled == false){
+         if(radioButtons[i].value=="artist"){
+           let choosenValue = artistSearchFilter.options[artistSearchFilter.selectedIndex].value
+            // = document.querySelector("#artistSearch").value;
+            const rtnStmt = songs.filter(item => item.artist.id == choosenValue);
+            console.log(rtnStmt);
+            return rtnStmt;
+         } else if (radioButtons[i].value=="genre"){
+            let choosenValue = genereSearchFilter.options[genereSearchFilter.selectedIndex].value
+            const rtnStmt = songs.filter(item => item.genre.id == choosenValue);
+            console.log(rtnStmt);
+            return rtnStmt;
+         } else {
+            let choosenValue = titleSearchFilter.value;
+
+            const rtnStmt = songs.filter(item => item.title == choosenValue );
+            console.log(rtnStmt);
+            return rtnStmt;
+            }
+         }
+      }
+     
+   
 }
 
 
 
+document.addEventListener("DOMContentLoaded", function(){
+   const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
+   const clearButton = document.querySelector("#clear-btn");
+   const titleFilter = document.querySelector("#titleFilter");
+   const artistFilter = document.querySelector("#artistFilter");
+   const genereFilter = document.querySelector("#genreFilter");
+   const genereSearchFilter = document.querySelector("#genreSearch");
+   const titleSearchFilter = document.querySelector("#titleSearch");
+   const artistSearchFilter = document.querySelector("#artistSearch");
+   
 
-getSearchedData("11a");
+console.log(radioButtons);
+
+
+   titleFilter.addEventListener("click", function(){
+
+      titleSearchFilter.removeAttribute('disabled');
+      artistFilter.setAttribute("disabled","");
+      artistSearchFilter.setAttribute("disabled","");
+      genereFilter.setAttribute("disabled","");
+      genereSearchFilter.setAttribute("disabled","");
+      titleSearchFilter.addEventListener("change", function(){
+         getNodes();
+         console.log();
+      })
+      
+   })
+
+   artistFilter.addEventListener("click", function(){
+      artistSearchFilter.removeAttribute("disabled");
+      titleFilter.setAttribute("disabled","");
+      titleSearchFilter.setAttribute("disabled","");
+      genereFilter.setAttribute("disabled","");
+      genereSearchFilter.setAttribute("disabled","");
+      artistSearchFilter.addEventListener("change", function(){
+         // console.log(artistSearchFilter.options[artistSearchFilter.selectedIndex].value);
+         getNodes();
+         
+      });
+      
+   })
+
+   genereFilter.addEventListener("click", function(){
+      genereSearchFilter.removeAttribute("disabled");
+      titleFilter.setAttribute("disabled","");
+      titleSearchFilter.setAttribute("disabled","");
+      artistFilter.setAttribute("disabled","");
+      artistSearchFilter.setAttribute("disabled","");
+      genereSearchFilter.addEventListener("change", function(){
+         getNodes();
+      })
+   })
+
+   clearButton.addEventListener("click", function(){
+      
+      artistFilter.removeAttribute("disabled");
+      titleFilter.removeAttribute("disabled");
+      genereFilter.removeAttribute("disabled");
+      genereSearchFilter.removeAttribute("disabled");
+      titleSearchFilter.removeAttribute("disabled");
+      artistSearchFilter.removeAttribute("disabled");
+      genereSearchFilter.selectedIndex=0;
+      artistSearchFilter.selectedIndex=0;
+      titleSearchFilter.value="";
+      // document.querySelector("#genreSearch option").setAttribute();
+
+   });
+
+
+
+
+
+
+})
+
+
+
+
 
 
 
@@ -110,7 +198,7 @@ function getSongIdByTitle(title) {
 // Function to handle button click and add song ID to the favorites array
 function handleAddButtonClick() {
     // Read the song title from an input field (replace 'yourInputId' with the actual input field ID)
-    const songTitleInput = document.getElementById('yourInputId');
+    const songTitleInput = document.getElementById('yourInputId');//HE DOES NOT WANT US TO USE GETS BUT RATHER QUERY
     const songTitle = songTitleInput.value.trim();
 
     if (songTitle) {
@@ -136,14 +224,15 @@ function handleAddButtonClick() {
 }
 
 // Attach the function to the "Add" button click event (replace 'yourButtonId' with the actual button ID)
-const addButton = document.getElementById('yourButtonId');
-addButton.addEventListener('click', handleAddButtonClick);
+// const addButton = document.getElementById('yourButtonId');
+// addButton.addEventListener('click', handleAddButtonClick);
 
 // Snackbar
 
 function showSnackbar() {
-   var snackbar = document.getElementById("snackbar");
-   snackbar
+   // var snackbar = document.getElementById("snackbar");
+   // snackbar
+}
 
 
 
