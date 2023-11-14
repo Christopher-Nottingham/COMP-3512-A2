@@ -76,30 +76,37 @@ function getNodes(){
    const genereSearchFilter = document.querySelector("#genreSearch");
    const titleSearchFilter = document.querySelector("#titleSearch");
    const artistSearchFilter = document.querySelector("#artistSearch");
-   //const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
+ 
    
    for(let i = 0; i<radioButtons.length; i++){
       if (radioButtons[i].disabled == false){
          if(radioButtons[i].value=="artist"){
-           let choosenValue = artistSearchFilter.options[artistSearchFilter.selectedIndex].value
-            // = document.querySelector("#artistSearch").value;
-            const tempA =  songs.filter(item => item.artist.id == choosenValue);
-            tempA.forEach((item)=>{filteredArray.push(item)});
-            // console.log(rtnStmt);
+            if(filteredArray.length>0){
+               filteredArray.splice(0,filteredArray.length);
+            }
+            
+           let choosenValue = artistSearchFilter.options[artistSearchFilter.selectedIndex].value;
+          
+            
+            songs.filter(item => item.artist.id == choosenValue).forEach((item)=>{filteredArray.push(item)});
+            printTable();
+            
+            
             
          } else if (radioButtons[i].value=="genre"){
-            let choosenValue = genereSearchFilter.options[genereSearchFilter.selectedIndex].value
-            const tempA =  songs.filter(item => item.genre.id == choosenValue);
-            tempA.forEach((item)=>{filteredArray.push(item)});
-            // console.log(rtnStmt);
+            let choosenValue = genereSearchFilter.options[genereSearchFilter.selectedIndex].value;
+            
+            songs.filter(item => item.genre.id == choosenValue).forEach((item)=>{filteredArray.push(item)});
+            printTable();
+            
+           
             
          } else {
             let choosenValue = titleSearchFilter.value;
 
-            const tempA = songs.filter(item => item.title == choosenValue );
-            tempA.forEach((item)=>{filteredArray.push(item)});
+            songs.filter(item => item.title == choosenValue ).forEach((item)=>{filteredArray.push(item)});
 
-            
+            printTable();
 
 
             
@@ -111,10 +118,93 @@ function getNodes(){
 } 
 
 
-console.log(filteredArray);
-//console.log(JSON.parse(objs));
+function printTable() {
+   const table = document.querySelector("#songs-table");
+   const check = document.querySelectorAll("table tr th");
+   console.log(check);
+   console.log(table);
+
+   if (check.length == 0) {
+      let tableRow = document.createElement('tr');
+      let tableHead = document.createElement('th');
+      tableHead.textContent = 'Title';
+      tableRow.appendChild(tableHead);
+      tableHead = document.createElement('th');
+      tableHead.textContent = 'Artist';
+      tableRow.appendChild(tableHead);
+      tableHead = document.createElement('th');
+      tableHead.textContent = 'Year';
+      tableRow.appendChild(tableHead);
+      tableHead = document.createElement('th');
+      tableHead.textContent = 'Genre';
+      tableRow.appendChild(tableHead);
+      tableHead = document.createElement('th');
+      tableHead.textContent = 'Popularity';
+      tableRow.appendChild(tableHead);
+
+      tableHead = document.createElement('th');
+      tableHead.textContent = '&&&&&&&&&&&&';
+      tableRow.appendChild(tableHead);
+      table.appendChild(tableRow);
 
 
+      for (let i = 0; i < filteredArray.length; i++) {
+
+
+         tableRow = document.createElement('tr');
+         let tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].title;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].artist.name;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].year;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].genre.name;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].details.popularity;
+         tableRow.appendChild(tableColumn);
+         table.appendChild(tableRow);
+
+
+
+      }
+   } else {
+      const deleteChilds = document.querySelectorAll("table tr");
+      if (deleteChilds.length > 0) {
+         for (let i = 1; i < deleteChilds.length; i++) {
+            deleteChilds[i].remove();
+         }
+      }
+      for (let i = 0; i < filteredArray.length; i++) {
+
+
+         tableRow = document.createElement('tr');
+         let tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].title;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].artist.name;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].year;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].genre.name;
+         tableRow.appendChild(tableColumn);
+         tableColumn = document.createElement('td');
+         tableColumn.textContent = filteredArray[i].details.popularity;
+         tableRow.appendChild(tableColumn);
+         table.appendChild(tableRow);
+
+
+
+      }
+   }
+}
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -127,9 +217,6 @@ document.addEventListener("DOMContentLoaded", function(){
    const titleSearchFilter = document.querySelector("#titleSearch");
    const artistSearchFilter = document.querySelector("#artistSearch");
    
-
-console.log(radioButtons);
-
 
    titleFilter.addEventListener("click", function(){
 
@@ -181,7 +268,6 @@ console.log(radioButtons);
       genereSearchFilter.selectedIndex=0;
       artistSearchFilter.selectedIndex=0;
       titleSearchFilter.value="";
-      // document.querySelector("#genreSearch option").setAttribute();
 
    });
 
