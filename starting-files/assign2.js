@@ -5,7 +5,7 @@
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 // window.localStorage
 
-
+const filteredArray=[];
 
 
 // const data = fetch(api).then(res => res.json());
@@ -69,6 +69,7 @@ function addGenre(){
 }
 addGenre();
 
+
 function getNodes(){
    const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
 
@@ -82,26 +83,37 @@ function getNodes(){
          if(radioButtons[i].value=="artist"){
            let choosenValue = artistSearchFilter.options[artistSearchFilter.selectedIndex].value
             // = document.querySelector("#artistSearch").value;
-            const rtnStmt = songs.filter(item => item.artist.id == choosenValue);
-            console.log(rtnStmt);
-            return rtnStmt;
+            const tempA =  songs.filter(item => item.artist.id == choosenValue);
+            tempA.forEach((item)=>{filteredArray.push(item)});
+            // console.log(rtnStmt);
+            
          } else if (radioButtons[i].value=="genre"){
             let choosenValue = genereSearchFilter.options[genereSearchFilter.selectedIndex].value
-            const rtnStmt = songs.filter(item => item.genre.id == choosenValue);
-            console.log(rtnStmt);
-            return rtnStmt;
+            const tempA =  songs.filter(item => item.genre.id == choosenValue);
+            tempA.forEach((item)=>{filteredArray.push(item)});
+            // console.log(rtnStmt);
+            
          } else {
             let choosenValue = titleSearchFilter.value;
 
-            const rtnStmt = songs.filter(item => item.title == choosenValue );
-            console.log(rtnStmt);
-            return rtnStmt;
+            const tempA = songs.filter(item => item.title == choosenValue );
+            tempA.forEach((item)=>{filteredArray.push(item)});
+
+            
+
+
+            
             }
          }
       }
-     
+    
    
-}
+} 
+
+
+console.log(filteredArray);
+//console.log(JSON.parse(objs));
+
 
 
 
