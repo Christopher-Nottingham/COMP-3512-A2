@@ -6,7 +6,17 @@ body {
 .header {
   background: #1b2b3c; /* Bootstrap primary color */
   color: white;
+  display: flex;
+  justify-content: space-between; /* Aligns items to each end */
+  padding: 0 15px; /* Add padding to the header */
 }
+
+.header-title {
+  flex-grow: 1; /* Allows the title to grow and center itself */
+  text-align: center; /* Centers the text of the title */
+}
+
+
 
 /* Style for navigation buttons - using Bootstrap button classes */
 #playlist-credits button {
@@ -30,7 +40,104 @@ body {
   border-right: 1px solid #dc3c3c; /* Separator line */
 }
 
+.sorting-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
 
+.sorting-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sort-title {
+  margin-right: 8px; /* Spacing between the title and the arrow */
+  font-weight: bold;
+}
+
+.arr {
+  background: white;
+  height: 30px; /* Adjust size as necessary */
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px; /* Spacing around the arrow */
+  transition: 0.4s ease;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.arr div {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  border-top: 20px solid #202020;
+  border-left: 20px solid #202020;
+  transform: rotate(45deg);
+}
+
+.arr.down div {
+  transform: rotate(45deg);
+}
+
+/* Hover effect for the arrow container */
+.arr:hover {
+  background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.down {
+  transform: rotate(180deg);
+}
+
+
+.sorting-button .arrow {
+  /* Using a pseudo-element for the arrow */
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.sorting-button .arrow::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-top: 5px solid; /* Create the arrow */
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+/* When sorting-button is active or in focus, rotate the arrow to point upwards */
+.sorting-button.active .arrow::after, 
+.sorting-button:focus .arrow::after {
+  transform: rotate(180deg);
+}
+
+/* Additional styles for Add button */
+#addButton {
+  margin-left: 2px; /* Spacing between the Popularity button and Add button */
+  /* Additional styling if needed */
+}
+
+/* Custom dropdown styles if needed */
+.dropdown-menu {
+  background: #9e1717; /* Change to match your color scheme */
+  border-radius: .25rem;
+  border: 1px solid #010000; /* Light grey border */
+}
+
+.dropdown-item {
+  color: #333; /* Dark text for contrast on light background */
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa; /* Light grey background on hover */
+}
 
 #search-form .search-field {
   margin-bottom: .5rem;
