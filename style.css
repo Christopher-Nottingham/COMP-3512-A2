@@ -169,7 +169,7 @@ body {
 
 /* Snackbar styles */
 .snackbar {
-  visibility: hidden; /* Hidden by default */
+  visibility: hidden; /* Hidden */
   min-width: 250px;
   margin-left: -125px;
   background-color: #333;
