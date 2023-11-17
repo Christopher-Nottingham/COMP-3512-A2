@@ -1,12 +1,10 @@
-
- 
-
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 // window.localStorage
 
 const filteredArray=[];
 
+const selectedSongsArray = [];
 
 // const data = fetch(api).then(res => res.json());
 // console.log(data);
@@ -116,7 +114,7 @@ function getNodes(){
    
 } 
 
-
+// tr - row th- head
 function printTable() {
    const table = document.querySelector("#songs-table");
    const check = document.querySelectorAll("table tr th");
@@ -170,11 +168,11 @@ function printTable() {
 
          let tableButton = document.createElement('button');
          addButton.textContent = "Add";
-         addButton.dataset.id = filteredArray[i].song_id;
+         addButton.dataset.id = filteredArray[i].songId;
          //event listener for the button
          addButton.addEventListener("click", function (event) {
-            let song_id = this.dataset.id; 
-            addSongToPlaylist(filteredArray[song_id]);
+            let songId = this.dataset.id; 
+            addSongToPlaylist(filteredArray[i]);
          });
 
          // Add add button to the table row
@@ -188,10 +186,12 @@ function printTable() {
       // Add the song to the playlist
       function addSongToPlaylist(song) {
          // Add the song to the playlist array
-         playlist.push(song);
-
+         selectedSongsArray.push(song);
+         for (let i = 0; i < selectedSongsArray.length; i++) {
+          console.log(selectedSongsArray[i].song);
+         }
          // Log the updated playlist array
-         console.log('Succesfully added to Playlist:', song.title);
+         console.log('Succesfully added to Playlist:');
 
          // We can add other actions here
 
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 })
 
-]
+
 
 
 
@@ -311,6 +311,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // Array to store the matched song IDs
 const favoritesArray = [];
+
 
 // Function to get the song ID by its title
 function getSongIdByTitle(title) {
@@ -387,15 +388,3 @@ function showSnackbar() {
  
 // display the song list (title, artist name, year, genre name, popularity) using the provided  sample-songs.json data.
 //Implement the column sort 
-
-
-
-
-
-
-
-
-
-
-
-
