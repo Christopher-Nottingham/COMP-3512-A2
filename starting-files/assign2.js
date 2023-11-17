@@ -1,5 +1,5 @@
 
-
+ 
 
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
@@ -31,7 +31,6 @@ const filteredArray=[];
 const songs = JSON.parse(songsArray);
 const artist = JSON.parse(artistData);
 const generes = JSON.parse(generesData);
-
 // console.log(tempArray);
 function searchTitle(title) {
 const rtnStmt = songs.filter(item => item.genre.id === title );
@@ -57,7 +56,7 @@ function addGenre(){
    
    let empty = document.createElement("option");
    empty.value = "";
-   empty.textContent = "Select a Genere";
+   empty.textContent = "Select a Genre";
    document.querySelector("#genreSearch").appendChild(empty);
          for(let i = 0; i<generes.length; i++){
             let option = document.createElement("option");
@@ -143,7 +142,7 @@ function printTable() {
       tableRow.appendChild(tableHead);
 
       tableHead = document.createElement('th');
-      tableHead.textContent = '&&&&&&&&&&&&';
+      tableHead.textContent = '&&&&&&&&&&';
       tableRow.appendChild(tableHead);
       table.appendChild(tableRow);
 
@@ -169,6 +168,32 @@ function printTable() {
          tableRow.appendChild(tableColumn);
          table.appendChild(tableRow);
 
+         let tableButton = document.createElement('button');
+         addButton.textContent = "Add";
+         addButton.dataset.id = filteredArray[i].song_id;
+         //event listener for the button
+         addButton.addEventListener("click", function (event) {
+            let song_id = this.dataset.id; 
+            addSongToPlaylist(filteredArray[song_id]);
+         });
+
+         // Add add button to the table row
+         let buttonColumn = document.createElement('td');
+         buttonColumn.appendChild(addButton);
+         tableRow.appendChild(buttonColumn);
+
+         table.appendChild(tableRow);
+      }
+
+      // Add the song to the playlist
+      function addSongToPlaylist(song) {
+         // Add the song to the playlist array
+         playlist.push(song);
+
+         // Log the updated playlist array
+         console.log('Succesfully added to Playlist:', song.title);
+
+         // We can add other actions here
 
 
       }
@@ -278,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 })
 
-
+]
 
 
 
