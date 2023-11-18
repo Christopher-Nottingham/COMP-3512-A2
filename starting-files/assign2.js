@@ -67,6 +67,20 @@ function addGenre(){
 addGenre();
 
 
+ // Add the song to the playlist
+ function addSongToPlaylist(song) {
+   // Add the song to the playlist array
+   selectedSongsArray.push(song);
+   for (let i = 0; i < selectedSongsArray.length; i++) {
+    console.log(selectedSongsArray[i].song);
+   }
+   // Log the updated playlist array
+   console.log('Succesfully added to Playlist:');
+
+   // We can add other actions here
+}
+
+
 function getNodes(){
    const radioButtons = document.querySelectorAll('input[name="searchFilter"]');
 
@@ -115,8 +129,9 @@ function getNodes(){
 } 
 
 // tr - row th- head
-function printTable() {
-   const table = document.querySelector("#songs-table");
+function printTable() { // print the table
+   const table = document.querySelector("#songs-table"); // get the table element
+   table.innerHTML = ""; // clear the table before adding new
    const check = document.querySelectorAll("table tr th");
    console.log(check);
    console.log(table);
@@ -142,61 +157,75 @@ function printTable() {
       tableHead = document.createElement('th');
       tableHead.textContent = '&&&&&&&&&&';
       tableRow.appendChild(tableHead);
-      table.appendChild(tableRow);
+   
+
+      
+       // Append rows for songs
+   filteredArray.forEach((song, index) => {
+      let tableRow = document.createElement('tr');
+      tableRow.innerHTML = `
+         <td>${song.title}</td>
+         <td>${song.artist.name}</td>
+         <td>${song.year}</td> 
+         <td>${song.genre.name}</td>
+         <td>${song.details.popularity}</td> 
+         <td><button class="add-btn" data-id="${song.id}">Add</button></td>
+      `;
+      table.appendChild(tableRow); // append the row to the table body 
+   });
+
+// Add event listener to the parent table for delegation (event bubbling) (e=event)
+document.querySelector("#songs-table").addEventListener("click", function(e) {
+   // Check if the clicked element is an "Add" button
+   if(e.target.classList.contains("add-btn")) {
+
+      // Get the song ID from the clicked button
+      const songId = e.target.dataset.id;
+      const song = filteredArray.find(s => s.id == songId);
+      addSongToPlaylist(song);
+   }
+});
+
+      // for (let i = 0; i < filteredArray.length; i++) {
 
 
-      for (let i = 0; i < filteredArray.length; i++) {
+      //    tableRow = document.createElement('tr');
+      //    let tableColumn = document.createElement('td');
+      //    tableColumn.textContent = filteredArray[i].title;
+      //    tableRow.appendChild(tableColumn);
+      //    tableColumn = document.createElement('td');
+      //    tableColumn.textContent = filteredArray[i].artist.name;
+      //    tableRow.appendChild(tableColumn);
+      //    tableColumn = document.createElement('td');
+      //    tableColumn.textContent = filteredArray[i].year;
+      //    tableRow.appendChild(tableColumn);
+      //    tableColumn = document.createElement('td');
+      //    tableColumn.textContent = filteredArray[i].genre.name;
+      //    tableRow.appendChild(tableColumn);
+      //    tableColumn = document.createElement('td');
+      //    tableColumn.textContent = filteredArray[i].details.popularity;
+      //    tableRow.appendChild(tableColumn);
+      //    table.appendChild(tableRow);
 
+      //    let tableButton = document.createElement('button');
+      //    addButton.textContent = "Add";
+      //    addButton.dataset.id = filteredArray[i].songId;
+      //    //event listener for the button
+      //    addButton.addEventListener("click", function () {
+      //       let songId = this.id; 
+      //       addSongToPlaylist(filteredArray[i]);
+      //    });
 
-         tableRow = document.createElement('tr');
-         let tableColumn = document.createElement('td');
-         tableColumn.textContent = filteredArray[i].title;
-         tableRow.appendChild(tableColumn);
-         tableColumn = document.createElement('td');
-         tableColumn.textContent = filteredArray[i].artist.name;
-         tableRow.appendChild(tableColumn);
-         tableColumn = document.createElement('td');
-         tableColumn.textContent = filteredArray[i].year;
-         tableRow.appendChild(tableColumn);
-         tableColumn = document.createElement('td');
-         tableColumn.textContent = filteredArray[i].genre.name;
-         tableRow.appendChild(tableColumn);
-         tableColumn = document.createElement('td');
-         tableColumn.textContent = filteredArray[i].details.popularity;
-         tableRow.appendChild(tableColumn);
-         table.appendChild(tableRow);
+      //    // Add add button to the table row
+      //    let buttonColumn = document.createElement('td');
+      //    buttonColumn.appendChild(addButton);
+      //    tableRow.appendChild(buttonColumn);
 
-         let tableButton = document.createElement('button');
-         addButton.textContent = "Add";
-         addButton.dataset.id = filteredArray[i].songId;
-         //event listener for the button
-         addButton.addEventListener("click", function (event) {
-            let songId = this.dataset.id; 
-            addSongToPlaylist(filteredArray[i]);
-         });
+      //    table.appendChild(tableRow);
+      // }
 
-         // Add add button to the table row
-         let buttonColumn = document.createElement('td');
-         buttonColumn.appendChild(addButton);
-         tableRow.appendChild(buttonColumn);
+     
 
-         table.appendChild(tableRow);
-      }
-
-      // Add the song to the playlist
-      function addSongToPlaylist(song) {
-         // Add the song to the playlist array
-         selectedSongsArray.push(song);
-         for (let i = 0; i < selectedSongsArray.length; i++) {
-          console.log(selectedSongsArray[i].song);
-         }
-         // Log the updated playlist array
-         console.log('Succesfully added to Playlist:');
-
-         // We can add other actions here
-
-
-      }
    } else {
       const deleteChilds = document.querySelectorAll("table tr");
       if (deleteChilds.length > 0) {
