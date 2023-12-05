@@ -376,16 +376,55 @@ function handleAddButtonClick() {
     }
 }
 
+   // //function to show the Search/Browse Songs View
+   // function showSearchBrowseSongsView() {
+   //       document.getElementById('search-browse-view').style.display = 'block';
+   //       document.getElementById('single-song-view').style.display = 'none';
+   //       document.getElementById('playlist-view').style.display = 'none';
+   //   }
+  
+   //    // function to show the Single Song View
+   //    function showSingleSongView() {
+   //       document.getElementById('search-browse-view').style.display = 'none';
+   //       document.getElementById('single-song-view').style.display = 'block';
+   //       document.getElementById('playlist-view').style.display = 'none';
+   //    }
+
+   //    //function to show the Playlist View
+   //    function showPlaylistView() {
+   //       document.getElementById('search-browse-view').style.display = 'none';
+   //       document.getElementById('single-song-view').style.display = 'none';
+   //       document.getElementById('playlist-view').style.display = 'block';
+   //    }
+
+   //    //event listener for the Playlist button
+   //    document.getElementById('playlist-btn').addEventListener('click', showPlaylistView);
+
+   //    //event listener for the Single Song button
+   //    document.getElementById('single-song-btn').addEventListener('click', showSingleSongView);
+
+   //    //event listener for the Search/Browse Songs button
+   //    document.getElementById('search-browse-songs-btn').addEventListener('click', showSearchBrowseSongsView);
+
+   //    //button in the Single Song View to go back to search
+   //    //document.getElementById('backToSearchButton').addEventListener('click', showSearchBrowseView);
+
+   //    function onSongClick(songId) {
+   //       showSingleSongView();
+   //    }
+
+
+
 // Attach the function to the "Add" button click event (replace 'yourButtonId' with the actual button ID)
 // const addButton = document.getElementById('yourButtonId');
 // addButton.addEventListener('click', handleAddButtonClick);
 
 // Snackbar
 
-function showSnackbar() {
+//function showSnackbar() {
    // var snackbar = document.getElementById("snackbar");
    // snackbar
-}
+//}
 
 
 
