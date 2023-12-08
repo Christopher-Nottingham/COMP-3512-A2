@@ -40,25 +40,25 @@ body {
   border-right: 1px solid #dc3c3c; /* Separator line */
 }
 
-.sorting-container {
+.sorting-container { /* Container for the sorting buttons */
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%; 
 }
 
-.sorting-button {
+.sorting-button { /* The sorting buttons */
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.sort-title {
-  margin-right: 8px; /* Spacing between the title and the arrow */
+.sort-title { 
+  margin-right: 100px; /* Spacing between the title and the arrow */
   font-weight: bold;
 }
 
-.arr {
+.arr { /* The arrow container */
   background: white;
   height: 30px; /* Adjust size as necessary */
   width: 30px;
@@ -71,7 +71,7 @@ body {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-.arr div {
+.arr div { /* The arrow itself */
   position: relative;
   height: 15px;
   width: 15px;
@@ -120,8 +120,11 @@ body {
 
 /* Additional styles for Add button */
 #addButton {
-  margin-left: 2px; /* Spacing between the Popularity button and Add button */
+  margin-left: 2px;
+  /* Spacing between the Popularity button and Add button */
+
   /* Additional styling if needed */
+  
 }
 
 /* Custom dropdown styles if needed */
@@ -157,7 +160,12 @@ body {
   padding: 1rem;
 }
 
-#songs-table th,
+#songs-table th, 
+#songs-table td {
+  padding: .75rem;
+  text-align: center;
+  width: 650px;
+}
 #songs-table td {
   border-bottom: 1px solid #dee2e6; /* Bootstrap table row separator color */
 }
@@ -214,3 +222,4 @@ body {
   max-width: 650px;
   max-height: 650px;
 }
+
