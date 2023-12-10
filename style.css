@@ -164,7 +164,7 @@ body {
 #songs-table td {
   padding: .75rem;
   text-align: center;
-  width: 650px;
+  width: 650px; /* width between categories title,artist etc. */
 }
 #songs-table td {
   border-bottom: 1px solid #dee2e6; /* Bootstrap table row separator color */
@@ -177,7 +177,7 @@ body {
 
 /* Snackbar styles */
 .snackbar {
-  visibility: hidden; /* Hidden */
+  visibility: visible; /* Hidden */
   min-width: 250px;
   margin-left: -125px;
   background-color: #333;

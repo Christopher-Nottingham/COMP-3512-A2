@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+
+
 <head>
     <title>COMP 3512 Assignment 2 - Playlist</title>
     <link rel="stylesheet" href="style.css">
@@ -8,6 +10,7 @@
 </head>
 
 <body>
+    <script src= "starting-files/assign2.js" ></script> 
     <header class="header">
         <div class="container-fluid">
             <div class="row justify-content-between">
@@ -45,7 +48,7 @@
                         <th>Year</th>
                         <th>Genre</th>
                         <th>Popularity</th>
-                       <th> <button id="Remove" class="btn btn-outline-primary">Remove</button> </th>
+                        <th>Remove Your Songs</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,20 +68,36 @@
         </div>
     </footer>
 
-    <!-- External JavaScript -->
-    <script src="starting-files/playlist.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Close View button Functionality Script -->
    
      <script>
+
+    // External JavaScript 
+    
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"
+
         document.addEventListener('DOMContentLoaded', function () {
             const closeButton = document.getElementById('closeButton');
             closeButton.addEventListener('click', function () {
                 window.location.href = 'index.html';
             });
-        });
+            
+    const playlistTable = document.getElementById('playlist-table');
+    if (playlistTable) {
+        displayPlaylist();
+        updatePlaylistSummary();
+
+        const clearPlaylistButton = document.getElementById('clearPlaylistButton');
+        if (clearPlaylistButton) {
+            clearPlaylistButton.addEventListener('click', function () {
+                clearPlaylist(); // Call a function to clear the playlist
+            });
+        }
+    }
+});
     </script>
 </body>
 

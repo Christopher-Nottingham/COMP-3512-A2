@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
+    <script src= "starting-files/assign2.js" ></script>  
     <header class="header">
         <div class="container-fluid">
             <div class="row justify-content-between">
@@ -20,97 +20,128 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="creditsButton">
                             <a class="dropdown-item" href="#">Group names</a>
-                            <a class="dropdown-item" href="https://github.com/Christopher-Nottingham/COMP-3512-A2.github.io.git">GitHub URL</a>
+                            <a class="dropdown-item" href="https://github.com/ObaydaD/COMP-3512-A2.github.io.git"> GitHub URL </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+   
 
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Song Information Section -->
-                <section id="song-information">
-                    <h2>Song Information</h2>
-                    <!-- Song information elements go here -->
-                </section>
-                <!-- My Chart Section -->
-                <section id="my-chart-section">
-                    <h2>My Chart</h2>
-                    <div>
-                        <canvas id="myChart"width="1" height="1"></canvas>
-                      </div>
+    <aside id="search-aside">
+        <!-- Sidebar content like search filters can go here -->
+        <div class="song-information">
+          <h2>Song Information</h2>
+          <div id="song-details">
+            <!-- Dynamic song details will be inserted here -->
+          </div>
+          <h3>Analysis data:</h3>
+          <ul id="analysis-data">
+            <!-- Dynamic analysis data will be inserted here -->
+          </ul>
+        </div>
+      </aside>
 
-                      <script>
-                        const ctx = document.getElementById('myChart');
-                      
-                        new Chart(ctx, {
-                          type: 'bar',
-                          data: {
-                            labels: ['bpm', 'energy', 'danceability', 'liveness', 'valence', 'acousticness', 'speechiness', 'popularity'],
-                            datasets: [{
-                              label: 'Song Analysis',
-                              data: [12, 19, 3, 5, 2, 3, 7, 8], // Replace these with your actual data
-                              backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)', // red
-                                'rgba(54, 162, 235, 0.2)', // blue
-                                'rgba(255, 206, 86, 0.2)', // yellow
-                                'rgba(75, 192, 192, 0.2)', // green
-                                'rgba(153, 102, 255, 0.2)', // purple
-                                'rgba(255, 159, 64, 0.2)', // orange
-                                'rgba(199, 199, 199, 0.2)', // grey
-                                'rgba(83, 102, 255, 0.2)'  // dark blue
-                              ],
-                              borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(199, 199, 199, 1)',
-                                'rgba(83, 102, 255, 1)'
-                              ],
-                              borderWidth: 1
-                            }]
-                          },
-                          options: {
-                            scales: {
-                              y: {
-                                beginAtZero: true
-                              }
-                            }
+<main id="main-content">
+  <!-- Main content goes here -->
+  <main class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            </section>
+            <!-- My Chart Section -->
+            <section id="my-chart-section">
+                <h2>My Chart</h2>
+                <div>
+                    <canvas id="myChart"width="1" height="1"></canvas>
+                  </div>
+
+                  <script>
+                    const ctx = document.getElementById('myChart');
+                  
+                    new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                        labels: ['bpm', 'energy', 'danceability', 'liveness', 'valence', 'acousticness', 'speechiness', 'popularity'],
+                        datasets: [{
+                          label: 'Song Analysis',
+                          data: [12, 19, 3, 5, 2, 3, 7, 8], // Replace these with your actual data
+                          backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', // red
+                            'rgba(54, 162, 235, 0.2)', // blue
+                            'rgba(255, 206, 86, 0.2)', // yellow
+                            'rgba(75, 192, 192, 0.2)', // green
+                            'rgba(153, 102, 255, 0.2)', // purple
+                            'rgba(255, 159, 64, 0.2)', // orange
+                            'rgba(199, 199, 199, 0.2)', // grey
+                            'rgba(83, 102, 255, 0.2)'  // dark blue
+                          ],
+                          borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)',
+                            'rgba(83, 102, 255, 1)'
+                          ],
+                          borderWidth: 1
+                        }]
+                      },
+                      options: {
+                        scales: {
+                          y: {
+                            beginAtZero: true
                           }
-                        });
-                      </script>
-                </section>
+                        }
+                      }
+                    });
+                  </script>
+
+</main>
+
+<footer class="footer bg-dark text-white">
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-auto">
+                <p> COMP 3512 - Obayda and Guranjan</p>
             </div>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <footer class="footer bg-dark text-white">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-auto">
-                    <p> COMP 3512 - Obayda and Guranjan</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Additional scripts if necessary -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 
-    <!-- Close View button Functionality Script -->
-    <script>
+function closeView() {
+  // closeview
+}
+
+function showCredits() {
+  // show credits
+}
+</script>
+
+     <!-- Close View button Functionality Script -->
+     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const closeButton = document.getElementById('closeButton');
             closeButton.addEventListener('click', function () {
                 window.location.href = 'index.html';
+ 
+
+    // Check if we're on the index3.html page
+    if (window.location.pathname.includes('index3.html') || window.location.href.includes('index3.html')) {
+        const songId = getSongIdFromUrl(); // Function to get the song ID from the URL
+        if (songId) {
+            const song = getSongDetails(songId); // Function to get song details based on the ID
+            displaySongInfo(song); // Function to display song information
+        }
+    }
+});
+
             });
-        });
     </script>
+    
 </body>
 </html>
